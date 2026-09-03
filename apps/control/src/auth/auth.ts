@@ -3,7 +3,7 @@
  *
  * Creates and configures the betterAuth instance with:
  * - SQLite database (shared with AppStorage)
- * - GitHub + Google OAuth providers
+ * - GitHub + Google + Microsoft OAuth providers
  * - Custom user fields: role, slug
  * - Email allowlist enforcement via hooks
  * - 14-day session expiry with daily refresh

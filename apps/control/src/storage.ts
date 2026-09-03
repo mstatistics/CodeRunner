@@ -177,15 +177,19 @@ export class AppStorage {
 			const hasGoogle = Boolean(
 				this.config.googleClientId && this.config.googleClientSecret,
 			);
-			if (!hasGitHub && !hasGoogle) {
+			const hasMicrosoft = Boolean(
+				this.config.microsoftClientId && this.config.microsoftClientSecret,
+			);
+			if (!hasGitHub && !hasGoogle && !hasMicrosoft) {
 				log.warn("no OAuth providers configured — login will not work", {
 					baseUrl: this.config.baseUrl,
-					hint: "Set GITHUB_CLIENT_ID/SECRET or GOOGLE_CLIENT_ID/SECRET in your .env",
+					hint: "Set GITHUB_CLIENT_ID/SECRET, GOOGLE_CLIENT_ID/SECRET, or MICROSOFT_CLIENT_ID/SECRET in your .env",
 				});
 			} else {
 				log.debug("oauth providers configured", {
 					github: hasGitHub,
 					google: hasGoogle,
+					microsoft: hasMicrosoft,
 				});
 			}
 		}

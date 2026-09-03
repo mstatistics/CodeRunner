@@ -64,6 +64,8 @@ write_files:
       GH_CLIENT_SECRET="$(fetch coderunner-github-client-secret)"
       GOOG_CLIENT_ID="$(fetch coderunner-google-client-id)"
       GOOG_CLIENT_SECRET="$(fetch coderunner-google-client-secret)"
+      MS_CLIENT_ID="$(fetch coderunner-microsoft-client-id)"
+      MS_CLIENT_SECRET="$(fetch coderunner-microsoft-client-secret)"
       ADMIN_TOKEN_VAL="$(fetch coderunner-admin-token)"
       METRICS_TOKEN_VAL="$(fetch coderunner-metrics-token)"
       GC_URL="$(fetch coderunner-grafana-cloud-url)"
@@ -74,7 +76,8 @@ write_files:
 
       required=(
         BETTER_AUTH_SECRET GH_CLIENT_ID GH_CLIENT_SECRET
-        GOOG_CLIENT_ID GOOG_CLIENT_SECRET ADMIN_TOKEN_VAL METRICS_TOKEN_VAL
+        GOOG_CLIENT_ID GOOG_CLIENT_SECRET MS_CLIENT_ID MS_CLIENT_SECRET
+        ADMIN_TOKEN_VAL METRICS_TOKEN_VAL
         GC_URL GC_USER GC_TOKEN GC_LOKI_URL GC_LOKI_USER
       )
       missing=()
@@ -123,6 +126,8 @@ write_files:
         echo "GITHUB_CLIENT_SECRET=$GH_CLIENT_SECRET"
         echo "GOOGLE_CLIENT_ID=$GOOG_CLIENT_ID"
         echo "GOOGLE_CLIENT_SECRET=$GOOG_CLIENT_SECRET"
+        echo "MICROSOFT_CLIENT_ID=$MS_CLIENT_ID"
+        echo "MICROSOFT_CLIENT_SECRET=$MS_CLIENT_SECRET"
         echo "ADMIN_TOKEN=$ADMIN_TOKEN_VAL"
         echo "METRICS_TOKEN=$METRICS_TOKEN_VAL"
         echo "CODE_MEMORY_LIMIT=4096m"

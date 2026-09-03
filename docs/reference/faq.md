@@ -19,7 +19,7 @@ These are simultaneous-use numbers: if only half your team codes at once, you ca
 
 After initial setup it mostly can. The bundled lesson catalog (baked into the workspace Docker image at `/opt/frc-catalog`) and the Gradle/WPILib dependency cache (primed during the image build) are all local, so students can open lessons, edit code, and run simulations without any network access.
 
-What does require internet: pulling the control and workspace Docker images for the first time (the first `docker compose pull`/`up` downloads several gigabytes), and OAuth sign-in. GitHub and Google OAuth redirect students to external servers to authenticate, so login does not work without internet. For a fully offline evaluation you can use demo mode (`--demo`), which bypasses authentication entirely.
+What does require internet: pulling the control and workspace Docker images for the first time (the first `docker compose pull`/`up` downloads several gigabytes), and OAuth sign-in. GitHub, Google, and Microsoft OAuth redirect students to external servers to authenticate, so login does not work without internet. For a fully offline evaluation you can use demo mode (`--demo`), which bypasses authentication entirely.
 
 ### Can students accidentally break each other's work?
 
@@ -46,7 +46,7 @@ communications are ready, choose a mode and click **Enable**.
 
 ### Do students need accounts? What if I just want to try it?
 
-For a real team deployment, students sign in with GitHub or Google, whichever OAuth provider you configure. You control who is allowed in via an email/domain allowlist. No accounts are created in advance; students sign in with their existing provider accounts, and their workspace is created automatically on first login.
+For a real team deployment, students sign in with GitHub, Google, or Microsoft, whichever OAuth provider you configure. You control who is allowed in via an email/domain allowlist. No accounts are created in advance; students sign in with their existing provider accounts, and their workspace is created automatically on first login.
 
 For a solo evaluation or demo, start the demo stack (`CODERUNNER_DEMO_MODE=1 docker compose up`, or `bun run demo:docker`). Demo mode bypasses all authentication. See [Quick Start (Installation)](../quick-start.md).
 

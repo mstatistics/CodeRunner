@@ -123,10 +123,13 @@ gcloud secrets versions add coderunner-admin-token \
 
 # OAuth credentials (register apps at the provider first; see ./oauth-credentials.md)
 # Use the real domain in the callback URLs: https://<your-domain>/api/auth/callback/github
+# .../google, and .../microsoft
 echo -n '<your-github-client-id>'     | gcloud secrets versions add coderunner-github-client-id --data-file=-
 echo -n '<your-github-client-secret>' | gcloud secrets versions add coderunner-github-client-secret --data-file=-
 echo -n '<your-google-client-id>'     | gcloud secrets versions add coderunner-google-client-id --data-file=-
 echo -n '<your-google-client-secret>' | gcloud secrets versions add coderunner-google-client-secret --data-file=-
+echo -n '<your-microsoft-client-id>'   | gcloud secrets versions add coderunner-microsoft-client-id --data-file=-
+echo -n '<your-microsoft-client-secret>' | gcloud secrets versions add coderunner-microsoft-client-secret --data-file=-
 
 # Grafana Cloud (create a free stack at grafana.com)
 echo -n 'https://prometheus-prod-XX-prod-us-central-0.grafana.net/api/prom/push' \

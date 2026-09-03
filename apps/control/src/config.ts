@@ -23,6 +23,8 @@ export type ControlConfig = {
 	githubClientSecret: string | null;
 	googleClientId: string | null;
 	googleClientSecret: string | null;
+	microsoftClientId: string | null;
+	microsoftClientSecret: string | null;
 	dockerPath: string;
 	codeImage: string;
 	codeMemoryLimit: string;
@@ -328,6 +330,10 @@ export function loadControlConfig(
 		googleClientId: input.googleClientId ?? Bun.env.GOOGLE_CLIENT_ID ?? null,
 		googleClientSecret:
 			input.googleClientSecret ?? Bun.env.GOOGLE_CLIENT_SECRET ?? null,
+		microsoftClientId:
+			input.microsoftClientId ?? Bun.env.MICROSOFT_CLIENT_ID ?? null,
+		microsoftClientSecret:
+			input.microsoftClientSecret ?? Bun.env.MICROSOFT_CLIENT_SECRET ?? null,
 		dockerPath: input.dockerPath ?? Bun.env.FRC_DOCKER_PATH ?? "docker",
 		codeImage:
 			input.codeImage ??

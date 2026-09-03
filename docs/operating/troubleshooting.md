@@ -163,11 +163,12 @@ host ports for workspace containers, so exhaustion here means
 are silently redirected back to the login page.
 
 **Cause: wrong callback URL.** The OAuth app registration does not include
-the actual host URL. Fix by ensuring the callback URL registered with GitHub
-or Google matches `BETTER_AUTH_URL`:
+the actual host URL. Fix by ensuring the callback URL registered with GitHub,
+Google, or Microsoft matches `BETTER_AUTH_URL`:
 
 - GitHub: `<BETTER_AUTH_URL>/api/auth/callback/github`
 - Google: `<BETTER_AUTH_URL>/api/auth/callback/google`
+- Microsoft: `<BETTER_AUTH_URL>/api/auth/callback/microsoft`
 
 `BETTER_AUTH_URL` must be the externally reachable base URL of the control
 plane (for example `https://coderunner.yourteam.ca`). On a local deployment

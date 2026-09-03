@@ -374,13 +374,17 @@ describe("auth provider discovery", () => {
 					new Request("http://localhost/api/auth/providers"),
 				);
 				expect(response.status).toBe(200);
-				expect(await response.json()).toEqual({ providers: ["github"] });
+				expect(await response.json()).toEqual({
+					providers: ["github", "google", "microsoft"],
+				});
 			},
 			{
 				githubClientId: "github-client-id",
 				githubClientSecret: "github-client-secret",
-				googleClientId: "",
-				googleClientSecret: "",
+				googleClientId: "google-client-id",
+				googleClientSecret: "google-client-secret",
+				microsoftClientId: "microsoft-client-id",
+				microsoftClientSecret: "microsoft-client-secret",
 			},
 		);
 	});
@@ -399,6 +403,8 @@ describe("auth provider discovery", () => {
 				githubClientSecret: "",
 				googleClientId: "",
 				googleClientSecret: "",
+				microsoftClientId: "",
+				microsoftClientSecret: "",
 			},
 		);
 	});

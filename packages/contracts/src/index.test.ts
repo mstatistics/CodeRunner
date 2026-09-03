@@ -54,9 +54,9 @@ describe("run message schemas", () => {
 describe("simulation API schemas", () => {
 	test("parses auth provider discovery payloads", () => {
 		expect(
-			authProvidersResponseSchema.parse({ providers: ["github"] }),
+			authProvidersResponseSchema.parse({ providers: ["github", "microsoft"] }),
 		).toEqual({
-			providers: ["github"],
+			providers: ["github", "microsoft"],
 		});
 		expect(
 			authProvidersResponseSchema.safeParse({ providers: ["discord"] }).success,

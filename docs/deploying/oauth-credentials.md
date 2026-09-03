@@ -6,11 +6,12 @@ title: OAuth Credentials
 # OAuth Credentials
 
 CodeRunner does not store passwords. Sign-in is handled by
-[Better Auth](https://www.better-auth.com/) using GitHub and/or Google as OAuth
-providers. **At least one provider must be configured** for any non-demo
-deployment; without one, the login page has no working sign-in button.
+[Better Auth](https://www.better-auth.com/) using GitHub, Google, and/or
+Microsoft as OAuth providers. **At least one provider must be configured** for
+any non-demo deployment; without one, the login page has no working sign-in
+button.
 
-You only need both if you want students to choose between GitHub and Google;
+You only need multiple providers if you want students to choose between them;
 configuring one is fine.
 
 This page covers registering the OAuth apps and wiring the resulting
@@ -33,10 +34,12 @@ Every OAuth app registration asks for a homepage/origin URL and a redirect
   | --- | --- |
   | GitHub | `<BETTER_AUTH_URL>/api/auth/callback/github` |
   | Google | `<BETTER_AUTH_URL>/api/auth/callback/google` |
+  | Microsoft | `<BETTER_AUTH_URL>/api/auth/callback/microsoft` |
 
 For local development that is `http://localhost:4000/api/auth/callback/github`
-and `.../google`. For the cloud VM it is
-`https://<your-domain>/api/auth/callback/github` and `.../google`.
+and `.../google` and `.../microsoft`. For the cloud VM it is
+`https://<your-domain>/api/auth/callback/github` and `.../google` and
+`.../microsoft`.
 
 ## Register a GitHub OAuth app
 
@@ -63,6 +66,20 @@ In the Google Cloud console:
 
 You now have a **Client ID** and a **Client Secret**.
 
+## Register a Microsoft OAuth app
+
+In the Microsoft Entra admin center:
+
+1. **App registrations → New registration**.
+2. Choose the account types you want to allow. The Better Auth provider uses
+  the multi-tenant `common` authority by default, so either work accounts,
+  personal accounts, or both can be supported depending on how you register
+  the app.
+3. Add a **Web** redirect URI of `<BETTER_AUTH_URL>/api/auth/callback/microsoft`.
+
+After registration, create a client secret in **Certificates & secrets**. You
+now have a **Client ID** and a **Client Secret**.
+
 ## Wire the credentials into CodeRunner
 
 CodeRunner reads these from environment variables (see
@@ -76,6 +93,8 @@ CodeRunner reads these from environment variables (see
 | `GITHUB_CLIENT_SECRET` | GitHub OAuth app client secret |
 | `GOOGLE_CLIENT_ID` | Google OAuth client ID |
 | `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
+| `MICROSOFT_CLIENT_ID` | Microsoft OAuth app client ID |
+| `MICROSOFT_CLIENT_SECRET` | Microsoft OAuth app client secret |
 
 A provider only appears on the login page when **both** its ID and secret are
 set. Where these values live depends on the deployment:

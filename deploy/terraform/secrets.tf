@@ -9,6 +9,8 @@ locals {
     "coderunner-github-client-secret",
     "coderunner-google-client-id",
     "coderunner-google-client-secret",
+    "coderunner-microsoft-client-id",
+    "coderunner-microsoft-client-secret",
     "coderunner-admin-token",
     "coderunner-metrics-token",
     "coderunner-grafana-cloud-url",

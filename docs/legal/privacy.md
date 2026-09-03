@@ -17,7 +17,7 @@ own hardware. Each installation is operated independently.
 
 - **For the instance you use.** The organization that runs your instance — your school,
   robotics team, or mentor — decides who may sign in, controls the server, and is
-  responsible for the data on it. They configure their own Google and GitHub OAuth
+  responsible for the data on it. They configure their own Google, GitHub, and Microsoft OAuth
   credentials.
 - **For the CodeRunner project.** The project maintainers publish the software and this
   documentation. They do not operate your instance, cannot see your data, and receive no
@@ -28,11 +28,11 @@ their own.
 
 ## What information is collected
 
-**Account information from sign-in.** CodeRunner supports signing in with Google or GitHub.
+**Account information from sign-in.** CodeRunner supports signing in with Google, GitHub, or Microsoft.
 It requests only basic profile scopes — for Google, `openid`, `email`, and `profile`. From
 that, it stores:
 
-- your Google or GitHub account identifier
+- your Google, GitHub, or Microsoft account identifier
 - your email address
 - your display name
 - your profile picture URL
@@ -40,7 +40,7 @@ that, it stores:
 These fields refresh from the provider each time you sign in.
 
 CodeRunner requests **no** access to Gmail, Drive, Calendar, Contacts, your repositories, or
-any other Google or GitHub data. It cannot read your mail, files, or private code.
+any other Google, GitHub, or Microsoft data. It cannot read your mail, files, or private code.
 
 **Work you create.** The Java code, project files, and lesson progress in your workspace are
 stored on the operator's server.
@@ -96,7 +96,7 @@ work you need to keep. See the [Terms of Service](./terms.md).
 ## Your choices
 
 - **Stop sharing.** You can revoke CodeRunner's access at any time from your
-  [Google Account permissions page](https://myaccount.google.com/permissions) or your GitHub
+  [Google Account permissions page](https://myaccount.google.com/permissions), your GitHub
   application settings. Doing so prevents future sign-ins.
 - **Access or delete your data.** Contact your instance's administrator. They can delete your
   account and workspace from the server.
@@ -105,7 +105,7 @@ work you need to keep. See the [Terms of Service](./terms.md).
 
 CodeRunner is built for FRC teams, so many users are minors. It is deployed by schools and
 robotics programs, and students use it under the supervision of that program. Sign-in
-accounts are created by the student's own Google or GitHub account, and access is limited to
+accounts are created by the student's own Google, GitHub, or Microsoft account, and access is limited to
 an operator-maintained allowlist. If you are a parent or guardian with questions about a
 particular instance, contact the operating school or team.
 

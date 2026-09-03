@@ -12,11 +12,12 @@ to evaluate whether CodeRunner is safe to deploy on their network.
 ## Authentication
 
 Sign-in is handled by [Better Auth](https://www.better-auth.com/) using OAuth.
-GitHub and Google are the supported providers; you configure one or both by
-supplying their client ID and secret as environment variables
-(`GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` and `GOOGLE_CLIENT_ID` /
-`GOOGLE_CLIENT_SECRET`). If a provider's credentials are absent it is simply
-not offered on the login page.
+GitHub, Google, and Microsoft are the supported providers; you configure one
+or more by supplying their client ID and secret as environment variables
+(`GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_ID` /
+`GOOGLE_CLIENT_SECRET`, and `MICROSOFT_CLIENT_ID` /
+`MICROSOFT_CLIENT_SECRET`). If a provider's credentials are absent it is
+simply not offered on the login page.
 
 Sessions are stored in the SQLite database and tracked with a signed cookie
 named `coderunner_session`. The signing key is the `BETTER_AUTH_SECRET`

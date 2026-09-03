@@ -10,13 +10,25 @@ import {
 import { cn } from "@/lib/utils";
 
 interface OAuthButtonProps {
-	provider: "github" | "google";
+	provider: AuthProvider;
 	disabled: boolean;
 	onClick: () => void;
 }
 
+function MicrosoftLogo() {
+	return (
+		<svg viewBox="0 0 16 16" aria-hidden="true" className="size-4.5 shrink-0">
+			<rect x="0" y="0" width="7" height="7" fill="#f25022" />
+			<rect x="9" y="0" width="7" height="7" fill="#7fba00" />
+			<rect x="0" y="9" width="7" height="7" fill="#00a4ef" />
+			<rect x="9" y="9" width="7" height="7" fill="#ffb900" />
+		</svg>
+	);
+}
+
 function OAuthButton({ provider, disabled, onClick }: OAuthButtonProps) {
 	const isGitHub = provider === "github";
+	const isGoogle = provider === "google";
 	return (
 		<div className="rounded-lg border border-border bg-card p-2">
 			<button
@@ -26,16 +38,22 @@ function OAuthButton({ provider, disabled, onClick }: OAuthButtonProps) {
 				className={cn(
 					"flex h-11 w-full items-center justify-center gap-3 rounded-md border px-4 text-[13px] font-semibold tracking-wide transition-all disabled:cursor-not-allowed disabled:opacity-45",
 					isGitHub
-						? "border-border bg-white/[0.06] text-foreground hover:bg-white/[0.11] hover:shadow-[0_0_18px_rgba(34,197,94,0.12)]"
-						: "border-border bg-white/[0.03] text-foreground hover:bg-white/[0.06]",
+						? "border-border bg-white/6 text-foreground hover:bg-white/11 hover:shadow-[0_0_18px_rgba(34,197,94,0.12)]"
+						: "border-border bg-white/3 text-foreground hover:bg-white/6",
 				)}
 			>
 				{isGitHub ? (
-					<SiGithub className="size-[18px] shrink-0" />
+					<SiGithub className="size-4.5 shrink-0" />
+				) : isGoogle ? (
+					<SiGoogle className="size-4.5 shrink-0" />
 				) : (
-					<SiGoogle className="size-[18px] shrink-0" />
+					<MicrosoftLogo />
 				)}
-				{isGitHub ? "Sign in with GitHub" : "Sign in with Google"}
+				{isGitHub
+					? "Sign in with GitHub"
+					: isGoogle
+						? "Sign in with Google"
+						: "Sign in with Microsoft"}
 			</button>
 		</div>
 	);
@@ -90,7 +108,7 @@ export function LoginPage() {
 		};
 	}, []);
 
-	async function signIn(provider: "github" | "google") {
+	async function signIn(provider: AuthProvider) {
 		setLoading(true);
 		setSignInError(null);
 		try {
