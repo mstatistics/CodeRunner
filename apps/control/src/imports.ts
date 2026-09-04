@@ -339,21 +339,61 @@ export class ImportManager {
 					],
 					send,
 				);
-				const sparseResult = await this.runtimeExec(workspace.id, [
+				const submoduleCheckResult = await this.runtimeExec(workspace.id, [
 					"git",
 					"-C",
 					sourceDir,
-					"sparse-checkout",
-					"set",
+					"ls-files",
 					subdir,
+					"--format=\"%(objectmode)\"",
 				]);
-				if (sparseResult.exitCode !== 0) {
+				if (submoduleCheckResult.exitCode !== 0 ) {
 					const detail =
-						sparseResult.stderr.trim() ||
-						sparseResult.stdout.trim() ||
-						`exit ${sparseResult.exitCode}`;
-					throw new ImportError(`Sparse checkout failed: ${detail}`);
+						submoduleCheckResult.stderr.trim() ||
+						submoduleCheckResult.stdout.trim() ||
+						`exit ${submoduleCheckResult.exitCode}`;
+					throw new ImportError(`Failed to check for submodules: ${detail}`);
 				}
+				const submoduleCheckOutput = submoduleCheckResult.stdout.trim();
+				if (submoduleCheckOutput == "\"160000\"") {
+					const submoduleInitResult = await this.runtimeExec(workspace.id, [
+						"git",
+						"-C",
+						sourceDir,
+						"submodule",
+						"update",
+						"--init",
+						"--recursive",
+						"--depth=1",
+						"--filter=blob:none",
+						"--",
+						subdir,
+					]);
+					if (submoduleInitResult.exitCode !== 0) {
+						const detail =
+							submoduleInitResult.stderr.trim() ||
+							submoduleInitResult.stdout.trim() ||
+							`exit ${submoduleInitResult.exitCode}`;
+						throw new ImportError(`Submodule init failed: ${detail}`);
+					}
+				} else {
+					const sparseResult = await this.runtimeExec(workspace.id, [
+						"git",
+						"-C",
+						sourceDir,
+						"sparse-checkout",
+						"set",
+						subdir,
+					]);
+					if (sparseResult.exitCode !== 0) {
+						const detail =
+							sparseResult.stderr.trim() ||
+							sparseResult.stdout.trim() ||
+							`exit ${sparseResult.exitCode}`;
+						throw new ImportError(`Sparse checkout failed: ${detail}`);
+					}
+				}
+				
 				projectRoot = `${sourceDir}/${subdir}`;
 			} else {
 				// Bundled: copy from the in-image catalog. No network, no clone.
