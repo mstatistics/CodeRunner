@@ -8,6 +8,7 @@ submodule before building AdvantageScope Lite.
   send `frc-sim:set-nt4-endpoint`, acknowledges with
   `frc-sim:nt4-endpoint-ready`, and starts the live NT4 connection with the
   injected alive probe and WebSocket URL.
+- `002-update-kitbot-dist.patch` updates the included 2025 kitbot to the 2026 kitbot
 
 Run `bun run apply:ascope-patches` to apply patches without rebuilding, or
 `bun run build:ascope` to apply patches, rebuild the Lite bundle, and stage it
