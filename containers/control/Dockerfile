@@ -34,7 +34,12 @@ RUN bun run build:web
 # preset. AdvantageScope's compile tooling wants a modern Node, so install
 # Node 24 (matching CI) ahead of emsdk's bundled runtime on PATH, plus a
 # pinned Bun for the build scripts.
-FROM emscripten/emsdk:4.0.12 AS ascope-build
+FROM emscripten/emsdk:4.0.12 AS ascope-build-amd64
+FROM emscripten/emsdk:4.0.12-arm64 AS ascope-build-arm64
+
+ARG TARGETARCH
+FROM ascope-build-${TARGETARCH} as ascope-build
+
 ARG BUN_VERSION
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends curl ca-certificates unzip \
