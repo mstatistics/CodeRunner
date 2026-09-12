@@ -1,0 +1,13 @@
+diff --git a/bundleLiteAssets.mjs b/bundleLiteAssets.mjs
+index 778fdee1..d79b7eae 100644
+--- a/bundleLiteAssets.mjs
++++ b/bundleLiteAssets.mjs
+@@ -23,7 +23,7 @@ const githubAssetNames = [
+   "Joystick_PS4ControllerV1",
+   "Joystick_XboxControllerBlueV1",
+   "Joystick_XboxControllerWhiteV1",
+-  "Robot_2025FRCKitBotV2",
++  "Robot_2026FRCKitBotV1",
+   "Robot_FTCDriveBaseV1"
+ ];
+ 
