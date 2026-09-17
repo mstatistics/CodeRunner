@@ -1,0 +1,15 @@
+diff --git a/src/shared/Preferences.ts b/src/shared/Preferences.ts
+index 4d905618..de5b2ca5 100644
+--- a/src/shared/Preferences.ts
++++ b/src/shared/Preferences.ts
+@@ -41,8 +41,8 @@ export const DEFAULT_PREFS: Preferences = {
+   publishFilter: "",
+   rlogPort: 5800,
+   coordinateSystem: "automatic",
+-  field3dModeAc: "standard",
+-  field3dModeBattery: "",
++  field3dModeAc: "low-power",
++  field3dModeBattery: "low-power",
+   field3dAntialiasing: true,
+   tbaApiKey: "",
+   userAssetsFolder: null,
